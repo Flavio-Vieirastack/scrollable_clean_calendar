@@ -126,7 +126,7 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
             SizedBox(
               width: double.maxFinite,
               child: MonthWidget(
-                month: month[4],
+                month: month[0],
                 locale: widget.locale,
                 layout: widget.layout,
                 monthBuilder: widget.monthBuilder,
@@ -149,7 +149,7 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
                   animation: widget.calendarController,
                   builder: (_, __) {
                     return DaysWidget(
-                      month: month[4],
+                      month: month[0],
                       cleanCalendarController: widget.calendarController,
                       calendarCrossAxisSpacing: widget.calendarCrossAxisSpacing,
                       calendarMainAxisSpacing: widget.calendarMainAxisSpacing,
