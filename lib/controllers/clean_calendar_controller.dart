@@ -104,8 +104,8 @@ class CleanCalendarController extends ChangeNotifier {
   void onDayClick(DateTime date, {bool update = true}) {
     if (rangeMode) {
       if (rangeMinDate == null || rangeMaxDate != null) {
-        // rangeMinDate = date;
-        // rangeMaxDate = null;
+        rangeMinDate = date;
+        rangeMaxDate = null;
       } else if (date.isBefore(rangeMinDate!)) {
         rangeMaxDate = rangeMinDate;
         rangeMinDate = date;
@@ -113,8 +113,8 @@ class CleanCalendarController extends ChangeNotifier {
         rangeMaxDate = date;
       }
     } else {
-      rangeMinDate = date;
-      rangeMaxDate = date;
+      // rangeMinDate = date;
+      // rangeMaxDate = date;
     }
 
     if (update) {
