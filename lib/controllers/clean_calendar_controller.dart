@@ -113,8 +113,8 @@ class CleanCalendarController extends ChangeNotifier {
         rangeMaxDate = date;
       }
     } else {
-      // rangeMinDate = date;
-      // rangeMaxDate = date;
+      rangeMinDate = date;
+      rangeMaxDate = date;
     }
 
     if (update) {
