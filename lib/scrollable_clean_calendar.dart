@@ -315,9 +315,10 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
         final month = widget.calendarController.months[index];
 
         return SizedBox(
-          height: 450,
+          width: 450,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 child: MonthWidget(
