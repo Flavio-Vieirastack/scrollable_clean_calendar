@@ -179,8 +179,8 @@ library scrollable_clean_calendar;
 
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:scrollable_clean_calendar/models/day_values_model.dart';
 import 'package:scrollable_clean_calendar/controllers/clean_calendar_controller.dart';
+import 'package:scrollable_clean_calendar/models/day_values_model.dart';
 import 'package:scrollable_clean_calendar/utils/enums.dart';
 import 'package:scrollable_clean_calendar/widgets/days_widget.dart';
 import 'package:scrollable_clean_calendar/widgets/month_widget.dart';
@@ -238,6 +238,9 @@ class ScrollableCleanCalendar extends StatefulWidget {
   /// The day disable background color
   final Color? dayDisableBackgroundColor;
 
+  /// The day disable color
+  final Color? dayDisableColor;
+
   /// The radius of day items
   final double dayRadius;
 
@@ -273,6 +276,7 @@ class ScrollableCleanCalendar extends StatefulWidget {
     this.dayBackgroundColor,
     this.daySelectedBackgroundColorBetween,
     this.dayDisableBackgroundColor,
+    this.dayDisableColor,
     this.dayTextStyle,
     this.dayRadius = 6,
     required this.calendarController,
@@ -297,8 +301,6 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      scrollDirection: Axis.horizontal,
-      shrinkWrap: true,
       controller: widget.scrollController,
       padding: widget.padding ??
           const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
