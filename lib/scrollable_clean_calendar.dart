@@ -316,7 +316,7 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
 
         return SizedBox(
           width: 450,
-          height: double.infinity,
+          height: 320,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
