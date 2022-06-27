@@ -317,7 +317,6 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: double.maxFinite,
               child: MonthWidget(
                 month: month,
                 locale: widget.locale,
