@@ -284,7 +284,7 @@ class ScrollableCleanCalendar extends StatefulWidget {
     this.dayTextStyle,
     this.dayRadius = 6,
     this.physics,
-    this.calendarHeight = 500,
+    this.calendarHeight = 440,
     required this.calendarController,
   }) : assert(layout != null ||
             (monthBuilder != null &&
@@ -316,7 +316,7 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
         itemCount: widget.calendarController.months.length,
 
         padding: widget.padding ??
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
         // cacheExtent:
         //     (MediaQuery.of(context).size.width / DateTime.daysPerWeek) * 6,
         separatorBuilder: (_, __) =>
