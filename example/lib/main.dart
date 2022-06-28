@@ -54,10 +54,16 @@ class MyApp extends StatelessWidget {
             )
           ],
         ),
-        body: ScrollableCleanCalendar(
-          calendarController: calendarController,
-          layout: Layout.BEAUTY,
-          calendarCrossAxisSpacing: 0,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ScrollableCleanCalendar(
+                calendarController: calendarController,
+                layout: Layout.BEAUTY,
+                calendarCrossAxisSpacing: 4,
+              ),
+            ],
+          ),
         ),
       ),
     );
