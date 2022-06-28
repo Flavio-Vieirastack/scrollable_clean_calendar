@@ -62,6 +62,18 @@ class MyApp extends StatelessWidget {
                 layout: Layout.BEAUTY,
                 calendarCrossAxisSpacing: 4,
               ),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Volta'),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Frente'),
+                  ),
+                ],
+              )
             ],
           ),
         ),
