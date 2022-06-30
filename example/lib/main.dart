@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:scrollable_clean_calendar/controllers/clean_calendar_controller.dart';
 import 'package:scrollable_clean_calendar/scrollable_clean_calendar.dart';
 import 'package:scrollable_clean_calendar/utils/enums.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final ItemScrollController scrollController = ItemScrollController();
-  jumpTo() {
-    scrollController.scrollTo(index: 20, duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
-  }
 
   final calendarController = CleanCalendarController(
     minDate: DateTime.now(),
@@ -64,7 +59,6 @@ class MyApp extends StatelessWidget {
           child: Column(
             children: [
               ScrollableCleanCalendar(
-                scrollController: scrollController,
                 calendarController: calendarController,
                 layout: Layout.BEAUTY,
                 calendarCrossAxisSpacing: 4,
@@ -76,7 +70,7 @@ class MyApp extends StatelessWidget {
                     child: const Text('Volta'),
                   ),
                   TextButton(
-                    onPressed: () => jumpTo(),
+                    onPressed: (){},
                     child: const Text('Frente'),
                   ),
                 ],
