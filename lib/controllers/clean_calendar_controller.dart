@@ -81,6 +81,8 @@ class CleanCalendarController extends ChangeNotifier {
   DateTime? rangeMinDate;
   DateTime? rangeMaxDate;
 
+  List<DateTime> get getMonths => months;
+
   List<String> getDaysOfWeek([String locale = 'pt']) {
     var today = DateTime.now();
 
