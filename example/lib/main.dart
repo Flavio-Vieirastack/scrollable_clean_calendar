@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:scrollable_clean_calendar/controllers/clean_calendar_controller.dart';
 import 'package:scrollable_clean_calendar/scrollable_clean_calendar.dart';
-import 'package:scrollable_clean_calendar/utils/enums.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
-  final calendarController = CleanCalendarController(
-    minDate: DateTime.now(),
-    maxDate: DateTime.now().add(const Duration(days: 365)),
-    onRangeSelected: (firstDate, secondDate) {},
-    onDayTapped: (date) {},
-    // readOnly: true,
-    onPreviousMinDateTapped: (date) {},
-    onAfterMaxDateTapped: (date) {},
-    weekdayStart: DateTime.monday,
-    // initialDateSelected: DateTime(2022, 3, 15),
-    // endDateSelected: DateTime(2022, 3, 20),
-  );
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: const ColorScheme(
           primary: Color(0xFF3F51B5),
-          primaryVariant: Color(0xFF002984),
           secondary: Color(0xFFD32F2F),
-          secondaryVariant: Color(0xFF9A0007),
           surface: Color(0xFFDEE2E6),
           background: Color(0xFFF8F9FA),
           error: Color(0xFF96031A),
@@ -43,40 +27,126 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Scrollable Clean Calendar'),
-          actions: [
-            IconButton(
-              onPressed: () {
-                calendarController.clearSelectedDates();
+      home: const Calendar(),
+    );
+  }
+}
+
+class Calendar extends StatefulWidget {
+  const Calendar({super.key});
+
+  @override
+  State<Calendar> createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar> {
+  final calendarController = CleanCalendarController(
+    minDate: DateTime(2000),
+    maxDate: DateTime(2100),
+    onRangeSelected: (firstDate, secondDate) {},
+    onDayTapped: (date) {},
+    onPreviousMinDateTapped: (date) {},
+    onAfterMaxDateTapped: (date) {},
+    weekdayStart: DateTime.monday,
+  );
+
+  int _month = 0;
+
+  @override
+  void initState() {
+    final currentDate = DateTime.now();
+    _month = calendarController.getMonths.indexWhere(
+      (element) =>
+          element.year == currentDate.year &&
+          element.month == currentDate.month,
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Scrollable Clean Calendar'),
+        actions: [
+          IconButton(
+            onPressed: calendarController.clearSelectedDates,
+            icon: const Icon(Icons.clear),
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    if (_month - 12 >= 0) {
+                      _month -= 12;
+                    } else {
+                      _month = 0;
+                    }
+
+                    setState(() {});
+                  },
+                  icon: const Icon(Icons.arrow_back_ios),
+                ),
+                Expanded(
+                  child: Text(
+                    calendarController.getMonths[_month].year.toString(),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    if (_month + 12 <=
+                        calendarController.getMonths.length - 1) {
+                      _month += 12;
+                    } else {
+                      _month = calendarController.getMonths.length - 1;
+                    }
+                    setState(() {});
+                  },
+                  icon: const Icon(Icons.arrow_forward_ios),
+                ),
+              ],
+            ),
+            ScrollableCleanCalendar(
+              calendarController: calendarController,
+              layout: Layout.BEAUTY,
+              monthBuilder: (_, month) {
+                return Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        if (_month > 0) {
+                          _month--;
+
+                          setState(() {});
+                        }
+                      },
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                    Expanded(
+                      child: Text(month),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        if (_month < calendarController.getMonths.length - 1) {
+                          _month++;
+
+                          setState(() {});
+                        }
+                      },
+                      icon: const Icon(Icons.arrow_forward_ios),
+                    ),
+                  ],
+                );
               },
-              icon: const Icon(Icons.clear),
-            )
+              calendarCrossAxisSpacing: 4,
+              currentMonth: _month,
+            ),
           ],
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ScrollableCleanCalendar(
-                calendarController: calendarController,
-                layout: Layout.BEAUTY,
-                calendarCrossAxisSpacing: 4,
-              ),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('Volta'),
-                  ),
-                  TextButton(
-                    onPressed: (){},
-                    child: const Text('Frente'),
-                  ),
-                ],
-              )
-            ],
-          ),
         ),
       ),
     );
