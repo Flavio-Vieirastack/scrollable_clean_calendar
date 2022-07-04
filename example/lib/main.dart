@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({ key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Calendar extends StatefulWidget {
-  const Calendar({super.key});
+  const Calendar({ key}) : super(key: key);
 
   @override
   State<Calendar> createState() => _CalendarState();
