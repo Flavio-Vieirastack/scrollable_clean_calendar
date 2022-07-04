@@ -41,7 +41,7 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   final calendarController = CleanCalendarController(
-    minDate: DateTime(2000),
+    minDate: DateTime(1900),
     maxDate: DateTime(2100),
     onRangeSelected: (firstDate, secondDate) {},
     onDayTapped: (date) {},
@@ -93,8 +93,10 @@ class _CalendarState extends State<Calendar> {
                   icon: const Icon(Icons.arrow_back_ios),
                 ),
                 Expanded(
-                  child: Text(
-                    calendarController.getMonths[_month].year.toString(),
+                  child: Center(
+                    child: Text(
+                      calendarController.getMonths[_month].year.toString(),
+                    ),
                   ),
                 ),
                 IconButton(
@@ -128,7 +130,7 @@ class _CalendarState extends State<Calendar> {
                       icon: const Icon(Icons.arrow_back_ios),
                     ),
                     Expanded(
-                      child: Text(month),
+                      child: Center(child: Text(month)),
                     ),
                     IconButton(
                       onPressed: () {

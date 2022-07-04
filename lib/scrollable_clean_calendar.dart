@@ -82,7 +82,7 @@ class ScrollableCleanCalendar extends StatefulWidget {
   final int currentMonth;
 
   const ScrollableCleanCalendar({
-    this.locale = 'en',
+    this.locale = 'pt_br',
     this.scrollController,
     this.showWeekdays = true,
     this.layout,
@@ -128,6 +128,7 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
     final month = widget.calendarController.months;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
           width: double.maxFinite,
@@ -141,37 +142,45 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
           ),
         ),
         SizedBox(height: widget.spaceBetweenMonthAndCalendar),
-        Column(
-          children: [
-            WeekdaysWidget(
-              showWeekdays: widget.showWeekdays,
-              cleanCalendarController: widget.calendarController,
-              locale: widget.locale,
-              layout: widget.layout,
-              weekdayBuilder: widget.weekdayBuilder,
-              textStyle: widget.weekdayTextStyle,
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.red),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(20),
             ),
-            AnimatedBuilder(
-              animation: widget.calendarController,
-              builder: (_, __) {
-                return DaysWidget(
-                  month: month[widget.currentMonth],
-                  cleanCalendarController: widget.calendarController,
-                  calendarCrossAxisSpacing: widget.calendarCrossAxisSpacing,
-                  calendarMainAxisSpacing: widget.calendarMainAxisSpacing,
-                  layout: widget.layout,
-                  dayBuilder: widget.dayBuilder,
-                  backgroundColor: widget.dayBackgroundColor,
-                  selectedBackgroundColor: widget.daySelectedBackgroundColor,
-                  selectedBackgroundColorBetween:
-                      widget.daySelectedBackgroundColorBetween,
-                  disableBackgroundColor: widget.dayDisableBackgroundColor,
-                  radius: widget.dayRadius,
-                  textStyle: widget.dayTextStyle,
-                );
-              },
-            )
-          ],
+          ),
+          child: Column(
+            children: [
+              WeekdaysWidget(
+                showWeekdays: widget.showWeekdays,
+                cleanCalendarController: widget.calendarController,
+                locale: widget.locale,
+                layout: widget.layout,
+                weekdayBuilder: widget.weekdayBuilder,
+                textStyle: widget.weekdayTextStyle,
+              ),
+              AnimatedBuilder(
+                animation: widget.calendarController,
+                builder: (_, __) {
+                  return DaysWidget(
+                    month: month[widget.currentMonth],
+                    cleanCalendarController: widget.calendarController,
+                    calendarCrossAxisSpacing: widget.calendarCrossAxisSpacing,
+                    calendarMainAxisSpacing: widget.calendarMainAxisSpacing,
+                    layout: widget.layout,
+                    dayBuilder: widget.dayBuilder,
+                    backgroundColor: widget.dayBackgroundColor,
+                    selectedBackgroundColor: widget.daySelectedBackgroundColor,
+                    selectedBackgroundColorBetween:
+                        widget.daySelectedBackgroundColorBetween,
+                    disableBackgroundColor: widget.dayDisableBackgroundColor,
+                    radius: widget.dayRadius,
+                    textStyle: widget.dayTextStyle,
+                  );
+                },
+              )
+            ],
+          ),
         )
       ],
     );
