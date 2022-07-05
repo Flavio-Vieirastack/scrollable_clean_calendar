@@ -152,8 +152,8 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
           padding: widget.padding,
           decoration: BoxDecoration(
             border: Border.all(color: widget.borderColor!),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(20),
+            borderRadius: BorderRadius.all(
+              Radius.circular(widget.radius!),
             ),
           ),
           child: Column(
