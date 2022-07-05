@@ -83,6 +83,8 @@ class ScrollableCleanCalendar extends StatefulWidget {
 
   final Color? borderColor;
 
+  final double? radius;
+
   const ScrollableCleanCalendar({
     this.locale = 'pt_br',
     this.scrollController,
@@ -107,6 +109,7 @@ class ScrollableCleanCalendar extends StatefulWidget {
     this.dayRadius = 6,
     this.currentMonth = 0,
     this.borderColor = Colors.red,
+    this.radius = 20,
     required this.calendarController,
   }) : assert(layout != null ||
             (monthBuilder != null &&
