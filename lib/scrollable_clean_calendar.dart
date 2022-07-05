@@ -81,6 +81,8 @@ class ScrollableCleanCalendar extends StatefulWidget {
 
   final int currentMonth;
 
+  final Color? borderColor;
+
   const ScrollableCleanCalendar({
     this.locale = 'pt_br',
     this.scrollController,
@@ -104,6 +106,7 @@ class ScrollableCleanCalendar extends StatefulWidget {
     this.dayTextStyle,
     this.dayRadius = 6,
     this.currentMonth = 0,
+    this.borderColor = Colors.red,
     required this.calendarController,
   }) : assert(layout != null ||
             (monthBuilder != null &&
@@ -143,8 +146,9 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
         ),
         SizedBox(height: widget.spaceBetweenMonthAndCalendar),
         Container(
+          padding: widget.padding,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.red),
+            border: Border.all(color: widget.borderColor!),
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
